@@ -42,7 +42,6 @@ import { useRoute } from 'vue-router';
 import { onMounted } from 'vue';
 import { reactive } from 'vue';
 const route = useRoute();
-console.log(route)
 const character = reactive({
     name: '',
     status: '',
@@ -50,7 +49,7 @@ const character = reactive({
     gender: '',
     image: '',
     episodes: []
-})
+});
 async function getCharacterInfo(name, status, species, gender) {
     const endpoint = "https://rickandmortyapi.com/graphql";
     const headers = {
@@ -90,33 +89,33 @@ async function getCharacterInfo(name, status, species, gender) {
     character.gender = data.data.characters.results[0].gender
     character.episodes = data.data.characters.results[0].episode
     character.image = data.data.characters.results[0].image
-    console.log(data.errors); //
 }
 onMounted(() => {
     getCharacterInfo(route.params.name, route.params.status, route.params.species, route.params.gender);
 })
 </script>
+
 <style>
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    padding-top: 2rem;
-    padding-bottom: 1rem;
-    background-color: #e0e0e0;
-    width: 70%;
-}
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+        background-color: #e0e0e0;
+        width: 70%;
+    }
 
-.info {
-    border-bottom: 1px solid grey;
-    padding: 1rem 4rem 1rem 4rem;
-    border-bottom: 1px solid grey;
-}
+    .info {
+        border-bottom: 1px solid grey;
+        padding: 1rem 4rem 1rem 4rem;
+        border-bottom: 1px solid grey;
+    }
 
-.episodes {
-    margin-top: 2rem;
-}
+    .episodes {
+        margin-top: 2rem;
+    }
 
-.episodes ul {
-    padding: 0;
-}
+    .episodes ul {
+        padding: 0;
+    }
 </style>

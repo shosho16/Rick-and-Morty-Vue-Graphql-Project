@@ -1,17 +1,17 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HelloWorld from '../components/HelloWorld.vue'
+import CharacterList from '../components/CharacterList.vue'
 import CharacterPage from '../components/CharacterPage.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HelloWorld,
+    component: CharacterList,
     props: true
   },
   {
-    path: '/about/:name/:status/:species/:gender',
-    name: 'about',
+    path: '/charactepage/:name/:status/:species/:gender',
+    name: 'charactepage',
     component: CharacterPage,
     props: true,
     meta: {

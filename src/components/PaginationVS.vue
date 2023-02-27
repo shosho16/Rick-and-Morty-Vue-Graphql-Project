@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-lg flex flex-center">
     <q-pagination v-model="current" color="primary" :max="pages" :max-pages="6" :boundary-numbers="false"
-      @click="disparaAcao()" />
+      @click="sendPage()" />
   </div>
 </template>
   
@@ -9,7 +9,7 @@
 import { ref } from 'vue'
 export default {
   methods: {
-    disparaAcao() {
+    sendPage() {
       this.$emit('selectedPage', this.current);
     },
     setPage(){

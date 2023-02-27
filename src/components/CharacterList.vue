@@ -31,8 +31,9 @@
                 <tbody>
                   <tr v-for="item in response" :key="item.id">
                     <td class="text-left">
-                      <RouterLink :to="{ path: `/about/${item.name}/${item.status}/${item.species}/${item.gender}` }">{{
-                        item.name }}</RouterLink>
+                      <RouterLink
+                        :to="{ path: `/charactepage/${item.name}/${item.status}/${item.species}/${item.gender}` }">{{
+                          item.name }}</RouterLink>
                     </td>
                     <td class="text-right">{{ item.species }}</td>
                     <td class="text-right">{{ item.gender }}</td>
@@ -59,12 +60,13 @@ export default {
 
   methods: {
     getPage(value) {
-      console.log(value); // Raja Tamil
       this.getCharacters(this.name, value);
     },
+
     setPage() {
       this.$refs.pagination.setPage()
     },
+
     async getCharacters(name = '', pages) {
       const pageResult = pages ? "page: " + pages + "" : ""
       const endpoint = "https://rickandmortyapi.com/graphql";
@@ -87,7 +89,6 @@ export default {
           }
         }`,
       };
-
       const options = {
         "method": "POST",
         "headers": headers,
@@ -99,13 +100,12 @@ export default {
 
       this.pages = data.data.characters.info.pages;
       this.response = data.data.characters.results
-      console.log(data.data.characters.results)
-      console.log(data.errors); //
+      console.log(data.errors);
     },
+
     pressed() {
       this.getCharacters(this.search);
       this.name = this.search;
-      console.log(this.name);
       this.defaultPage = 1;
     },
   },
@@ -126,41 +126,41 @@ export default {
 </script>
 
 <style>
-.search {
-  max-width: 1024px;
-  margin: 0 auto;
-  width: 100%;
-}
+  .search {
+    max-width: 1024px;
+    margin: 0 auto;
+    width: 100%;
+  }
 
-.search label {
-  padding: 0;
-}
+  .search label {
+    padding: 0;
+  }
 
-.search-wrapper {
-  display: flex;
-  justify-content: flex-end;
-}
+  .search-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
 
-.form {
-  width: 50%;
-  margin: 0 auto;
-}
+  .form {
+    width: 50%;
+    margin: 0 auto;
+  }
 
-.table {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;
-}
+  .table {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 100%;
+  }
 
-.table-head {
-  background-color: #e0e0e0;
-}
+  .table-head {
+    background-color: #e0e0e0;
+  }
 
-.table-head tr th{
-  font-size: large;
-}
+  .table-head tr th {
+    font-size: large;
+  }
 
-.mt-two {
-  margin-top: 2rem;
-}
+  .mt-two {
+    margin-top: 2rem;
+  }
 </style>
